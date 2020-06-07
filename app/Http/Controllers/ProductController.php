@@ -94,6 +94,28 @@ class ProductController extends Controller
         return  view('products.addproducts');
     }
 
+
+    /**
+     *
+     * Search for products  Live search
+     */
+
+    public function search(Request $request)
+    {
+        $output = "";
+        $products = DB::select("SELECT * FROM products
+        WHERE name LIKE '%{$request->search}%' limit 4 ");
+        if ($products) {
+            foreach ($products as $key => $product) {
+                $output .=
+                    '<a href ="product/' . $product->id . '"  class="list-group-item " >' . $product->name . '</a>';
+            }
+            return ($output);
+        }
+    }
+
+
+
     /**
      * Display the specified resource.
      *

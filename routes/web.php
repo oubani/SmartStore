@@ -42,6 +42,8 @@ Route::get('/cart/destroy', 'CartController@destroy');
 Route::get('/addproduct', 'ProductController@create');
 Route::post('/productstore', 'ProductController@store');
 
+Route::get('/search', 'ProductController@search');
+
 Route::post('/confirmOrder', 'OrderController@store');
 Route::get('/validate', 'OrderController@valid');
 Route::get('myorders', 'OrderController@index');
@@ -52,3 +54,9 @@ Route::get('/orders', 'OrderController@allorders');
 Route::get('/notdelivred', 'OrderController@notdelivred');
 Route::get('/delivred', 'OrderController@delivred');
 Route::get('/orders/{id}/detail', 'OrderController@details');
+
+Route::get('/clientliste', 'ClientController@index');
+Route::get('/clientliste/admins', 'ClientController@admins');
+Route::get('/clientliste/clients', 'ClientController@clients');
+Route::get('/clients/upgrade/{id}', 'ClientController@upgrade');
+Route::get('/clients/degrade/{id}', 'ClientController@degrade');
