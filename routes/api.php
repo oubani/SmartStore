@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', 'ApiAuthController@login');
-// Route::post('register', 'UserController@register');
-Route::post('store', 'ProductController@store');
-Route::post('setPromotion', 'ProductController@setPromotion');
+Route::post('register', 'UserController@register');
+Route::get('productsHome', 'ApiProductController@index');
+Route::get('products/{id}', 'ApiProductController@categoried');
 Route::middleware('auth:api')->group(function () {
     Route::post('logout', 'ApiAuthController@logout');
 });

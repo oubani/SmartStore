@@ -15,20 +15,20 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = User::all();
+        $clients = DB::table('users')->paginate(5);
         return  view('clients.clients', ['clients' => $clients, 'page' => 'Clients Liste']);
     }
 
 
     public function admins()
     {
-        $clients = DB::table('users')->where('users.type', '=', 1)->get();
+        $clients = DB::table('users')->where('users.type', '=', 1)->paginate(5);
         return  view('clients.clients', ['clients' => $clients, 'page' => 'admins']);
     }
 
     public function clients()
     {
-        $clients = DB::table('users')->where('users.type', '=', 0)->get();
+        $clients = DB::table('users')->where('users.type', '=', 0)->paginate(5);
         return  view('clients.clients', ['clients' => $clients, 'page' => 'clients']);
     }
 

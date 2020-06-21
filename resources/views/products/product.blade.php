@@ -38,7 +38,7 @@
                     $t++;
                 @endphp
                 @else
-                <img src="/images/{{$img->imagename}}" width="100%"   class="rounded son card float-left img" >
+                <img src="/images/{{$img->imagename}}" width="100%"  height="155px"  class="rounded son card float-left img" >
                 @endif
             @endforeach
         </div>
@@ -47,7 +47,11 @@
         @foreach ($prod as $item)
             <h1  >{{$item->name}}</h1>
             <p class="mt-1" > {{$item->description}}</p>
-            <p class="mt-3" >prix : <span class="discounted" > {{$item->prix -  ($item->prix * $item->value/100)}} Dh </span> <span class="oldprice" >{{$item->prix}} DH </span>  </p>
+            <p class="mt-3" >prix : <span class="discounted" > {{ $item->prix -  ($item->prix * $item->value/100)}} Dh </span>  @php
+                if($item->value!==null){
+                    echo "<span class='oldprice' >".$item->prix." DH </span>";
+                }
+            @endphp  </p>
             <form action="{{url('add')}} " method="POST">
                 <input type="hidden" name="_token"   value="{{csrf_token()}}">
                 <div class="form-group mt-4 ">

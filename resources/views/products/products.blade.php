@@ -2,15 +2,20 @@
     use Illuminate\Support\Facades\DB;
 
     function oneProducts($item){
-
         $price = $item->prix-($item->prix *$item->value/100);
+        $promo = '';
+        $oldprice='';
+        if ($item->value) {
+            $promo =  '<span class="remise badge badge-secondary" > '. $item->value .' %</span>';
+            $oldprice= '<s>'.$item->prix.' Dh  </s>';
+        }
         $product = '
         <div class="col-md-4">
             <div class="card shadow rounded mb-2 " style="width: 17rem;">
                 <img class="card-img-top" height="269px" width=100% src="/images/'.$item->cover.'" alt="Card image cap">
                 <div class="card-body">
-                  <h5 class="card-title">'.$item->name.'  </h5>  <span class="remise badge badge-secondary" > '. $item->value .' %</span>
-                <p class="card-text"><s>'.$item->prix.' Dh  </s>  <span class="lastPrice" > '.$price .' Dh</span>    </p>
+                  <h5 class="card-title">'.$item->name.'  </h5>'. $promo .'
+                <p class="card-text"> '. $oldprice .' <span class="lastPrice" > '.$price .' Dh</span>    </p>
                   <hr>
                   <a href="/product/'.$item->id.' " class="btn btn-primary">Ajouter au panier</a>
                 </div>
@@ -41,6 +46,7 @@
                         {{oneProducts($item)}}
                     @endforeach
                 </div>
+                <div class="col-md-12">  {{ $products->links() }}  </div>
             </div>
         </div>
     </div>

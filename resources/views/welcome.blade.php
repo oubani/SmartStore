@@ -4,15 +4,21 @@
     function oneProducts($item){
 
         $price = $item->prix-($item->prix *$item->value/100);
+        $promo = '';
+        $oldprice='';
+        if ($item->value) {
+            $promo =  '<span class="remise badge badge-secondary" > '. $item->value .' %</span>';
+            $oldprice= '<s>'.$item->prix.' Dh  </s>';
+        }
         $product = '
         <div class="col-sm">
             <div class="card shadow rounded mb-2 " style="width: 18rem;">
                 <img class="card-img-top" src="/images/'.$item->cover.'" alt="Card image cap">
                 <div class="card-body">
-                  <h5 class="card-title">'.$item->name.'  </h5>  <span class="remise badge badge-secondary" > '. $item->value .' %</span>
-                <p class="card-text"> <s>'.$item->prix.' Dh  </s>  <span class="lastPrice" > '.$price .' Dh</span>    </p>
+                  <h5 class="card-title">'.$item->name.'  </h5>  '.$promo.'
+                <p class="card-text"> '.$oldprice.'  <span class="lastPrice" > '.$price .' Dh</span>    </p>
                   <hr>
-                  <a href="product/'.$item->idP.' " class="btn btn-primary">Ajouter au panier</a>
+                  <a href="product/'.$item->idP.' " class="btn btn-primary">See details</a>
                 </div>
               </div>
         </div>
@@ -75,7 +81,7 @@
     </div>
 </div>
 <div class="container mt-3 text-center ">
-    <h1 class="text-primary mb-3 ">Produits Plus Demmander</h1>
+    <h1 class="text-primary mb-3 "> Last Added Products</h1>
     <div class="row">
         <?php
 
@@ -87,9 +93,9 @@
         @endforeach
     </div>
     <br>
-    <a  href="products" class=" btn btn-success">More priducts +</a>
+    <a  href="products" class=" btn btn-success">See more products </a>
     <br>
-    <hr>
+
 
 </div>
 

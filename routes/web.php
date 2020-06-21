@@ -23,15 +23,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/profile', 'UserController@profile');
-Route::get('/editProfile', 'UserController@editProfile');  // Doesn't work yet
-Route::put('/usersupdate', 'UserController@updateProfile'); //same
-Route::patch('user/update', 'UserController@update'); // same
+Route::get('/profile', 'UserController@profile'); // done
+Route::get('/editProfile', 'UserController@editProfile');  // done
+Route::post('/userupdate', 'UserController@updateProfile'); // done
 
-Route::get('/products', 'ProductController@categored');
-Route::get('/products/{id}', 'ProductController@categored');
-Route::get('/product/{id}', 'ProductController@show');
-Route::get('/faovorite', 'ProductController@index');
+Route::get('/products', 'ProductController@categored'); // this route to display products to clients
+Route::get('/products/{id}', 'ProductController@categored'); // this route to display product to clients by categories
+Route::get('/product/{id}', 'ProductController@show'); // this route to display product to clients
+Route::get('/allProducts', 'ProductController@allProducts'); // this route is for adimn to see all products
+Route::get('/gproduct/{id}', 'ProductController@productDetails'); // this page display details of product it's for admin
+Route::get('/gproduct/{id}/edit', 'ProductController@edit'); // this page display details of product it's for admin
 
 Route::post('/add', 'CartController@add');
 Route::post('/updatecart', 'CartController@updatecart');
@@ -41,6 +42,7 @@ Route::get('/cart/destroy', 'CartController@destroy');
 
 Route::get('/addproduct', 'ProductController@create');
 Route::post('/productstore', 'ProductController@store');
+Route::post('productupdate', 'ProductController@update');
 
 Route::get('/search', 'ProductController@search');
 
@@ -60,3 +62,9 @@ Route::get('/clientliste/admins', 'ClientController@admins');
 Route::get('/clientliste/clients', 'ClientController@clients');
 Route::get('/clients/upgrade/{id}', 'ClientController@upgrade');
 Route::get('/clients/degrade/{id}', 'ClientController@degrade');
+
+Route::get('/categories', 'CategorieController@index');
+Route::get('/categories/create', 'CategorieController@create');
+Route::post('/categories', 'CategorieController@store');
+Route::get('/categories/{id}/edit', 'CategorieController@edit');
+Route::post('/categories/{id}/edit', 'CategorieController@update');

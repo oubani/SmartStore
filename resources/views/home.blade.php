@@ -31,6 +31,9 @@
     <div class="col-sm-6 col-md-4 mb-3">
         <a href="/orders" class="link_cards card pl-5 p-5 bg-info text-dark mb-1"> edit orders <span class="" ></span></a>
     </div>
+    <div class="col-sm-6 col-md-4 mb-3">
+        <a href="/allProducts" class="link_cards card pl-5 p-5 bg-info text-dark mb-1"> All Products <span class="" ></span></a>
+    </div>
 
     </div>
 </div>

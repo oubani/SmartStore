@@ -10,7 +10,9 @@
     {{--  right part Navbar --}}
 
     <ul class="nav navbar-nav navbar-right navbar-dark " >
-        <li class="nav-item"><a class="nav-link" href="/cart">cart <b>({{Cart::count()<1?' ':Cart::count()}})</b> </a> </li>
+        <li class="nav-item"><a class="nav-link" href="/products">Products  </a> </li>
+
+        <li class="nav-item"><a class="nav-link" href="/cart"> Cart <b>({{Cart::count()<1?' ':Cart::count()}})</b> </a> </li>
         @if (Auth::guest())
             <li class="nav-item"><a class="nav-link btn btn-success rounded text-white " href="{{route('login')}}" >Se connecter</a> </li>
         @else

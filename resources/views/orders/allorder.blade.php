@@ -45,6 +45,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $orders->links() }}
     @else
         <center> <p class="lead"> you don't have any order  <a href="/products">Start Shopping here </a> </p> </center>
         @endif

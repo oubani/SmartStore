@@ -28,16 +28,31 @@ class UserController extends Controller
     public function profile()
     {
         $data = auth()->user();
-        return view('auth.profile', ['data' => $data]);
+        // return $data;
+        return view('clients.profile', ['data' => $data]);
     }
 
     public function editProfile()
     {
-        return view('auth.editProfile');
+        return view('clients.editProfile');
     }
 
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
-        return $request;
+        $request->validate([
+            'name' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
+        $user = User::findorFail(auth()->user()->id);
+        $user->name = $request->name;
+        $user->lastName = $request->lastName;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->save();
+        return redirect('/profile');
     }
 }

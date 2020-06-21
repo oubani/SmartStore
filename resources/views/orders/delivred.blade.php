@@ -43,6 +43,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$orders->links()}}
     @else
         <center> <p class="lead"> you don't have any order didn't delivred yet  </p> </center>
         @endif

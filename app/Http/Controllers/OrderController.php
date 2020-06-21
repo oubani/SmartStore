@@ -33,14 +33,16 @@ class OrderController extends Controller
      */
     public function allorders()
     {
-        $orders = Order::all();
+        $orders = DB::table('orders')->paginate(5);
         return view('orders.allorder', ['orders' => $orders]);
     }
 
 
     public function notdelivred()
     {
-        $orders = DB::select('select * from orders where type = 0');
+        $orders = DB::table('orders')
+            ->where('type', '=', 0)
+            ->paginate(1);
         return view('orders.notdelivred', ['orders' => $orders]);
     }
 
@@ -58,7 +60,9 @@ class OrderController extends Controller
 
     public function delivred()
     {
-        $orders = DB::select('select * from orders where type = 1');
+        $orders = DB::table('orders')
+            ->where('type', '=', 1)
+            ->paginate(1);
         return view('orders.delivred', ['orders' => $orders]);
     }
 

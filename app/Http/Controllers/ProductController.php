@@ -29,7 +29,7 @@ class ProductController extends Controller
             ->leftJoin('promotions', 'products.id', '=', 'promotions.product_id')
             ->where('categorie_id', '=', $cat)
             ->select('products.*', 'promotions.value')
-            ->get();
+            ->paginate(6);
         // return $products;
 
         return view('products.products', ['products' => $products, 'categorie_id' => $cat]);
@@ -53,7 +53,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
+        // return $request;
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -83,7 +83,7 @@ class ProductController extends Controller
             ]);
         }
 
-        if (isset($request['value'])) {
+        if ($request['value'] !== null) {
             $promotion = Promotion::create([
                 'product_id' => $product['id'],
                 'value' => $request['value'],
@@ -139,12 +139,36 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     *
+     *
+     */
+    public function productDetails($id)
+    {
+        $product = DB::table('products')
+            ->leftJoin('promotions', 'products.id', 'promotions.product_id')
+            ->select('products.*', 'promotions.*')
+            ->where('products.id', '=', $id)
+            ->get();
+        $images  = DB::table('images')
+            ->select('images.imagename')
+            ->where('images.product_id', '=', $id)
+            ->get();
+        return view('products.productDetails', ['product' => $product, 'images' => $images]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $images = DB::table('images')
+            ->where('images.product_id', '=', $id)
+            ->get();
+        return view('products.editProduct', ['product' => $product, 'images' => $images]);
     }
 
     /**
@@ -156,7 +180,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        // get old  product
+        $product = Product::findOrFail($request->id);
+        $product->name = $request->name;
+        $product->prix = $request->prix;
+        $product->description = $request->description;
+        $product->stock = $request->stock;
+        $product->categorie_id = $request->categorie_id;
+        $product->save();
+        return redirect('/allProducts');
     }
 
     /**
@@ -168,5 +200,16 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function allProducts()
+    {
+        $products = DB::table('products')
+            ->join('categories', 'products.categorie_id', '=', 'categories.id')
+            ->leftJoin('promotions', 'products.id', '=', 'promotions.product_id')
+            ->select('products.*', 'categories.categorieName', 'promotions.value')
+            ->paginate(5);
+        // return $products;
+        return view('products.allProducts', ['products' => $products]);
     }
 }

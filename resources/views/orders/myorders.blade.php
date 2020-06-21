@@ -32,7 +32,7 @@
         </tbody>
     </table>
     @else
-    <a href="/products" class="btn btn_success">Start Shopping</a>
+    <a href="/products" class="btn btn-success"> Start Shopping</a>
     @endif
   </div>
 @endsection
