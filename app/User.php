@@ -42,4 +42,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Order');
     }
+
+    public function isAdmin()
+    {
+        if (auth()->user()->type == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

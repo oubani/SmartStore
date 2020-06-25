@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
+    //dd(auth()->user()->isAdmin());
     return view('welcome');
 });
 
@@ -63,8 +64,9 @@ Route::get('/clientliste/clients', 'ClientController@clients');
 Route::get('/clients/upgrade/{id}', 'ClientController@upgrade');
 Route::get('/clients/degrade/{id}', 'ClientController@degrade');
 
-Route::get('/categories', 'CategorieController@index');
-Route::get('/categories/create', 'CategorieController@create');
-Route::post('/categories', 'CategorieController@store');
-Route::get('/categories/{id}/edit', 'CategorieController@edit');
-Route::post('/categories/{id}/edit', 'CategorieController@update');
+// Route::get('/categories', 'CategorieController@index'); //show categories
+// Route::post('/categories', 'CategorieController@store');
+// Route::post('/categories/update', 'CategorieController@update');
+
+Route::resource('categories', 'CategorieController');
+Route::resource('promotions', 'PromotionController');

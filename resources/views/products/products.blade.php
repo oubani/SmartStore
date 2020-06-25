@@ -17,7 +17,7 @@
                   <h5 class="card-title">'.$item->name.'  </h5>'. $promo .'
                 <p class="card-text"> '. $oldprice .' <span class="lastPrice" > '.$price .' Dh</span>    </p>
                   <hr>
-                  <a href="/product/'.$item->id.' " class="btn btn-primary">Ajouter au panier</a>
+                  <a href="/product/'.$item->id.' " class="btn btn-primary">details</a>
                 </div>
               </div>
         </div>

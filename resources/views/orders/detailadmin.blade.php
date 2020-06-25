@@ -10,10 +10,10 @@
             <thead class="thead-dark" >
                 <tr>
                     <th scope="col" >image</th>
-                    <th scope="col" >Name</th>
-                    <th scope="col" >quantity </th>
-                    <th scope="col" >price</th>
-                    <th scope="col" >Total</th>
+                    <th scope="col" >{{__('messages.Pname')}}</th>
+                    <th scope="col" >{{__('messages.quantity')}} </th>
+                    <th scope="col" >{{__('messages.price')}}</th>
+                    <th scope="col" >{{__('messages.total')}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,10 +34,10 @@
                     </tr>
                 @endfor
                 <tr>
-                    <td colspan="4"><b>Total : </b></td>
+                    <td colspan="4"><b>{{__('messages.total')}} : </b></td>
                     <td><b>{{$t}} Dh </b></td></tr>
             </tbody>
         </table>
-    <div class="container"><a href="/order/{{$order_number}}/valide" class="btn btn-success">Validat order </a></div>
+    <div class="container"><a href="/order/{{$order_number}}/valide" class="btn btn-success">{{__('messages.validatOrder')}} </a></div>
     </div>
 @endsection

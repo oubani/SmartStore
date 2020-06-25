@@ -70,9 +70,9 @@
             <div class="form-search" >
                 <div class="input-group mb-3">
 
-                    <input type="text" class="form-control" placeholder="Search for a product by name " name="search" id="search">
+                    <input type="text" class="form-control" placeholder="{{__('messages.Searchholder')}}" name="search" id="search">
                     <div class="input-group-append">
-                    <span class="input-group-text text-primary "><b>Search</b></span>
+                    <span class="input-group-text text-primary "><b>{{__('messages.search')}}</b></span>
                     </div>
                 </div>
                 <div id="output" class="list-group" ></div>
@@ -81,7 +81,7 @@
     </div>
 </div>
 <div class="container mt-3 text-center ">
-    <h1 class="text-primary mb-3 "> Last Added Products</h1>
+    <h1 class="text-primary mb-3 ">{{__('messages.orderbyValue')}}</h1>
     <div class="row">
         <?php
 
@@ -93,7 +93,7 @@
         @endforeach
     </div>
     <br>
-    <a  href="products" class=" btn btn-success">See more products </a>
+    <a  href="products" class=" btn btn-success">{{__('messages.seeMore')}}</a>
     <br>
 
 

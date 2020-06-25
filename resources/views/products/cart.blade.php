@@ -6,10 +6,10 @@
             <table class="table mt-3">
                 <thead class="thead-dark"  >
                     <tr>
-                       <th scope="col" >Item</th>
-                       <th scope="col" >Price</th>
-                       <th scope="col" >Quantity</th>
-                       <th scope="col" >Total</th>
+                       <th scope="col" >{{__('messages.item')}}</th>
+                       <th scope="col" >{{__('messages.price')}}</th>
+                       <th scope="col" >{{__('messages.quantity')}}</th>
+                       <th scope="col" >{{__('messages.total')}}</th>
                        <th scope="col"></th>
 
                     </tr>
@@ -27,18 +27,18 @@
 
                             </tr>
                         @endforeach
-                            <tr><td colspan="3"><b>Total : </b></td><td><b>{{Cart::total()}} Dh </b></td></tr>
+                            <tr><td colspan="3"><b>{{__('messages.total')}} : </b></td><td><b>{{Cart::total()}} Dh </b></td></tr>
                             <tr>
-                                <td><input class="btn btn-primary" value="Update" type="submit">  </td>
-                                <td><a href="/cart/destroy" class="btn btn-danger">Clean cart <i class="fa fa-trash "></i></a></td>
+                                <td><input class="btn btn-primary" value="{{__('messages.update')}}" type="submit">  </td>
+                                <td><a href="/cart/destroy" class="btn btn-danger">{{__('messages.cleanCart')}} <i class="fa fa-trash "></i></a></td>
                             </tr>
                     </form>
                 </tbody>
             </table>
-            <a href="/validate"  class="btn mt-5 btn-success" >Validate</a>
-            <a href="/products" class="btn btn-primary mt-5 text-center">Continue Shopping</a>
+            <a href="/validate"  class="btn mt-5 btn-success" >{{__('messages.validate')}}</a>
+            <a href="/products" class="btn btn-primary mt-5 text-center">{{__('messages.continueShopping')}}</a>
             @else
-            <a href="/products" class="btn btn-primary mt-5 text-center">Start Shopping</a>
+            <a href="/products" class="btn btn-primary mt-5 text-center">{{__('messages.startShopping')}}</a>
 
         @endif
 

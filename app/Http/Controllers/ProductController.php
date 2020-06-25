@@ -146,7 +146,7 @@ class ProductController extends Controller
     {
         $product = DB::table('products')
             ->leftJoin('promotions', 'products.id', 'promotions.product_id')
-            ->select('products.*', 'promotions.*')
+            ->select('products.id as pid', 'promotions.*', 'promotions.id as idPromotion', 'products.*')
             ->where('products.id', '=', $id)
             ->get();
         $images  = DB::table('images')

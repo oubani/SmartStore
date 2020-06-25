@@ -1,6 +1,4 @@
-
 @extends('layouts.app')
-
 @section('content')
 <div class="container mt-2">
     <div class="row justify-content-center">
@@ -12,7 +10,7 @@
                     <form method="POST" action= "userupdate" >
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{__('messages.name')}}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ auth()->user()->name }}" required autocomplete="name" autofocus>
@@ -26,7 +24,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="lastName" class="col-md-4 col-form-label text-md-right">{{ __('Prenom') }}</label>
+                            <label for="lastName" class="col-md-4 col-form-label text-md-right">{{__('messages.lastName')}}</label>
                             <div class="col-md-6">
                                 <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ auth()->user()->lastName }}" required autocomplete="name" autofocus>
 
@@ -39,7 +37,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{__('messages.email')}}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ auth()->user()->email }}" required autocomplete="email">
@@ -53,7 +51,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Phone" class="col-md-4 col-form-label text-md-right">{{ __('Numero telephone') }}</label>
+                            <label for="Phone" class="col-md-4 col-form-label text-md-right">{{__('messages.phone')}}</label>
                             <div class="col-md-6">
                                 <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ auth()->user()->phone }}" required autocomplete="phone" autofocus>
                                 @error('phone')
@@ -64,7 +62,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="Adress" class="col-md-4 col-form-label text-md-right">{{ __('Adresse') }}</label>
+                            <label for="Adress" class="col-md-4 col-form-label text-md-right">{{__('messages.address')}}</label>
                             <div class="col-md-6">
                                 <input id="adress" type="text" class="form-control @error('adress') is-invalid @enderror" name="address" value="{{ auth()->user()->address }}" required autocomplete="adresse" autofocus>
                                 @error('adress')
@@ -77,7 +75,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Update') }}
+                                    {{__('messages.update')}}
                                 </button>
                             </div>
                         </div>

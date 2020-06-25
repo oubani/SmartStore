@@ -8,12 +8,12 @@
         <thead class="thead-dark" >
             <tr>
                 <th scope="col" >image</th>
-                <th scope="col" >Name</th>
-                <th scope="col" >Desciption </th>
-                <th scope="col" >Stoke </th>
-                <th scope="col" >price</th>
-                <th scope="col" >Categorie</th>
-                <th scope="col" >Promotion</th>
+                <th scope="col" >{{__('messages.Pname')}}</th>
+                <th scope="col" >{{__('messages.description')}} </th>
+                <th scope="col" >{{__('messages.stock')}} </th>
+                <th scope="col" >{{__('messages.price')}}</th>
+                <th scope="col" >{{__('messages.category')}}</th>
+                <th scope="col" >{{__('messages.promotion')}}</th>
                 <th scope="col" ></th>
             </tr>
         </thead>
@@ -27,7 +27,7 @@
                 <td> {{$product->prix}} </td>
                 <td> {{$product->categorieName}} </td>
                 <td> {{$product->value!== null?$product->value .' %':'---'}} </td>
-                <td> <a href="/gproduct/{{$product->id}} " class="btn btn-primary"> details </a></td>
+                <td> <a href="/gproduct/{{$product->id}} " class="btn btn-primary"> {{__('messages.details')}} </a></td>
             </tr>
             @endforeach
         </tbody>

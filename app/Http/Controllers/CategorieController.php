@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller
 {
@@ -15,7 +16,7 @@ class CategorieController extends Controller
     public function index()
     {
         $categories = Categorie::all();
-        return $categories;
+        return view('categories.categories', ['categories' => $categories]);
     }
 
     /**
@@ -35,7 +36,11 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate()
+        DB::table('categories')->insert(
+            ['categorieName' => $request->categorieName]
+        );
+        return redirect('/categories');
     }
 
     /**
@@ -70,6 +75,11 @@ class CategorieController extends Controller
     public function update(Request $request, Categorie $categorie)
     {
         //
+        // return $request;
+        $categorie = Categorie::findOrFail($request->categorieId);
+        $categorie->categorieName = $request->categorieName;
+        $categorie->save();
+        return redirect('/categories')->with('success', 'Categorie Name Updated');
     }
 
     /**
@@ -78,8 +88,10 @@ class CategorieController extends Controller
      * @param  \App\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorie $categorie)
+    public function destroy($id)
     {
-        //
+        $categorie = Categorie::find($id);
+        $categorie->delete();
+        return redirect('/categories')->with('success', 'Categorie Removed');
     }
 }

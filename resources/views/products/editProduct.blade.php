@@ -12,11 +12,11 @@
     }
 </style>
 <center>
-    <p class="lead" style="background:#333;color:white;padding:30px 0px;" >Edit {{$product->name}} </p>
+    <p class="lead" style="background:#333;color:white;padding:30px 0px;" >{{__('messages.edit')}} {{$product->name}} </p>
 </center>
 <div class="container">
     <br>
-    <a href="/home" class="btn indigo  "><i class="material-icons left">arrow_back</i> Back to dashbroad</a>
+    <a href="/home" class="btn indigo  "><i class="material-icons left">arrow_back</i> {{__('messages.backToDashboard')}}</a>
     <br>
     <br>
 <div class="row">
@@ -26,27 +26,27 @@
       <div class="row">
         <div class="input-field col s8">
           <input id="name" name="name" type="text" value="{{$product->name}}" class="validate">
-          <label for="name">name</label>
+          <label for="name">{{__('messages.Pname')}}</label>
         </div>
         <div class="input-field col s4">
             <input id="prix" name="prix" type="number" value="{{$product->prix}}"  class="validate">
-            <label for="prix">prix</label>
+            <label for="prix">{{__('messages.price')}}</label>
           </div>
       </div>
       <div class="row">
         <div class="input-field col s8">
           <input  id="description" name="description" type="text" value="{{$product->description}}" class="validate">
-          <label for="description">Description</label>
+          <label for="description">{{__('messages.description')}}</label>
         </div>
         <div class="input-field col s4">
           <input  id="stock" name="stock" type="number" value="{{$product->stock}}" class="validate">
-          <label for="stock">Stock</label>
+          <label for="stock">{{__('messages.stock')}}</label>
         </div>
       </div>
       <div class="row">
       <div class="input-field col s6">
       <select value="{{$product->categorie_id}}" name="categorie_id" class="browser-default">
-        <option  disabled selected>Choisir categorie</option>
+        <option  disabled selected>{{__('messages.chooseCategory')}} </option>
         <?php
             use App\Categorie;
             $cats =Categorie::all() ;
@@ -65,7 +65,7 @@
         <div class="col s6">
             <div class = "file-field input-field">
                <div class = "btn">
-                  <span>chosir cover </span>
+                  <span>{{__('messages.choosecover')}}  </span>
                   <input  type = "file" name="cover" value="{{$product->cover}}" />
                </div>
 
@@ -78,7 +78,7 @@
 
 
       <center>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter le produit
+        <button class="btn waves-effect waves-light" type="submit" name="action">{{__('messages.updateProduct')}}
         <i class="material-icons right">send</i>
       </button>
       </center>

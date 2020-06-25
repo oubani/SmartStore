@@ -8,7 +8,7 @@
 </style>
 <div class="container">
     <br>
-    <a href="/home" class="btn indigo  "><i class="material-icons left">arrow_back</i> Back to dashbroad</a>
+    <a href="/home" class="btn indigo  "><i class="material-icons left">arrow_back</i> {{__('messages.backToDashboard')}}</a>
     <br>
 <div class="row">
     <form class="col s12" enctype="multipart/form-data" method="POST" action="productstore" >
@@ -16,27 +16,27 @@
       <div class="row">
         <div class="input-field col s8">
           <input id="name" name="name" type="text" class="validate">
-          <label for="name">name</label>
+          <label for="name">{{__('messages.Pname')}}</label>
         </div>
         <div class="input-field col s4">
             <input id="prix" name="prix" type="number"   class="validate">
-            <label for="prix">prix</label>
+            <label for="prix">{{__('messages.price')}}</label>
           </div>
       </div>
       <div class="row">
         <div class="input-field col s8">
           <input  id="description" name="description" type="text" class="validate">
-          <label for="description">Description</label>
+          <label for="description">{{__('messages.description')}}</label>
         </div>
         <div class="input-field col s4">
           <input  id="stock" name="stock" type="number" class="validate">
-          <label for="stock">Stock</label>
+          <label for="stock">{{__('messages.stock')}}</label>
         </div>
       </div>
       <div class="row">
       <div class="input-field col s6">
       <select name="categorie_id" class="browser-default">
-        <option value="0" disabled selected>Choisir categorie</option>
+        <option value="0" disabled selected>{{__('messages.chooseCategory')}}</option>
         <?php
             use App\Categorie;
             $cats =Categorie::all() ;
@@ -49,7 +49,7 @@
         <div class="col s6">
             <div class = "file-field input-field">
                <div class = "btn">
-                  <span>chosir cover </span>
+                  <span>{{__('messages.choosecover')}} </span>
                   <input  type = "file" name="cover" />
                </div>
 
@@ -61,7 +61,7 @@
         </div>
 
         <div class="row">
-            <h4>Select Images Of Product </h4>
+            <h4>{{__('messages.selectImagesofProduct')}} </h4>
             <div class="col s3">
                 <div class = "file-field input-field">
                     <div class = "btn green">
@@ -108,12 +108,12 @@
 
 
           <div class="col s12  ">
-              <h3 class="promo">set promotion</h3>
+              <h3 class="promo">{{__('messages.setPromotion')}}</h3>
           </div>
           <div class="col s3">
             <label>
                 <input type="checkbox" value="0"  id="promofield" />
-                <span>Set Promotion </span>
+                <span>{{__('messages.setPromotion')}} </span>
               </label>
           </div>
           <div class="input-field col s3 promo">
@@ -130,7 +130,7 @@
           </div>
       </div>
       <center>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Ajouter le produit
+        <button class="btn waves-effect waves-light" type="submit" name="action">{{__('messages.addProduct')}}
         <i class="material-icons right">send</i>
       </button>
       </center>

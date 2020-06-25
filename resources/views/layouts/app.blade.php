@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Welcome to Smart Store</title>
+    <title>{{__('messages.welcomeToSmart')}}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -32,7 +32,9 @@
 <body>
 
     @include('inc.navbar')
-
+        <div class="container">
+            @include('inc.messages')
+        </div>
         @yield('content')
 
     @include('inc.footer')
