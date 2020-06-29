@@ -16,7 +16,7 @@
         <div class="col-sm-6 col-md-4 mb-3">
             <a href="/profile" class="link_cards card pl-5 p-5 bg-warning text-dark mb-1"> {{__('messages.myProfile')}} </a>
         </div>
-    @if (auth()->user()->type==1)
+    @if (auth()->user()->type!=0)
 
     <div class="col-sm-6 col-md-4 mb-3">
         <a href="/addproduct" class="link_cards card pl-5 p-5 bg-danger text-dark mb-1"> {{__('messages.addProduct')}} </a>

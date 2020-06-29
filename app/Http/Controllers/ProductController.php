@@ -42,6 +42,9 @@ class ProductController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         return view('products.addproducts');
     }
 
@@ -53,6 +56,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         // return $request;
         $request->validate([
             'name' => 'required',
@@ -164,6 +170,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $product = Product::findOrFail($id);
         $images = DB::table('images')
             ->where('images.product_id', '=', $id)
@@ -180,6 +189,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         // get old  product
         $product = Product::findOrFail($request->id);
         $product->name = $request->name;
@@ -204,6 +216,9 @@ class ProductController extends Controller
 
     public function allProducts()
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $products = DB::table('products')
             ->join('categories', 'products.categorie_id', '=', 'categories.id')
             ->leftJoin('promotions', 'products.id', '=', 'promotions.product_id')

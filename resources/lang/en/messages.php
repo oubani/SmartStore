@@ -83,12 +83,6 @@ return [
     'continueShopping' => 'Continue Shopping',
     'updateProduct' => 'Update Product',
     'addToCart' => 'Add To Cart',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
     'bienvenue' => 'Welcome to our website',
 
     // footer

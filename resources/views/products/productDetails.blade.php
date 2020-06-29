@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid p-4 pt-5 bg-dark text-warning mb-3 ">
@@ -64,24 +65,23 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            @php
-                // $dateStart= date_format(date_create($product[0]->date_start));
-            @endphp
             <div class="modal-body">
+                @if ($product[0]->value!=null)
+                {{ Form::open(['action'=>['PromotionController@update',$product[0]->idPromotion ],'method'=>'POST'])}}
+                {{Form::hidden('_method','PUT')}}
+                {{ Form::hidden('idPromotion',$product[0]->idPromotion,['id'=>'idP'])}}
+                @else
                 {{ Form::open(['action'=>'PromotionController@store','method'=>'POST'])}}
+                @endif
                     <div class="form-group">
-                        {{-- {{ Form::hidden('idP','',['id'=>'idP'])}} --}}
-                        {{ Form::number('idp','',['id'=>'idP','class'=>'form-control','placeholder'=>'Set value for item'])}}
-                        {{ Form::label('value', 'Value') }}
-                        {{ Form::number('value',$product[0]->date_start,['id'=>'value','class'=>'form-control','placeholder'=>'Set value for item'])}}
+                        {{ Form::label('value', 'Value ') }}
+                        {{ Form::number('value',$product[0]->value,['id'=>'value','class'=>'form-control','placeholder'=>'Set value for item','required'=>'required'])}}
                         {{ Form::label('dateStart', 'Promotion Starts on ') }}
-                        {{ Form::date('dateStart',date_format(date_create($product[0]->date_start),"Y/m/d"),['id'=>'dateStart','class'=>'form-control','placeholder'=>'Set value for item'])}}
+                        {{ Form::date('dateStart',date_format(date_create($product[0]->date_start),"Y-m-d"),['id'=>'dateStart','class'=>'form-control','min'=>"YYYY-MM-DD",'placeholder'=>'Set value for item'])}}
                         {{ Form::label('dateEnd', 'Promotion ends on ') }}
-                        {{ Form::date('dateEnd','',['id'=>'dateEnd','class'=>'form-control','placeholder'=>'Set value for item'])}}
+                        {{ Form::date('dateEnd',date_format(date_create($product[0]->date_expires),"Y-m-d"),['id'=>'dateEnd','class'=>'form-control','min'=>date_format(date_create($product[0]->date_start),'Y-m-d'),'placeholder'=>'Set value for item'])}}
                     </div>
                     @if ($product[0]->value!=null)
-
-                    {{ Form::number('idp','',['id'=>'idP','class'=>'form-control','placeholder'=>'Set value for item'])}}
                     {{From::submit('Update Promotion',['class'=>'btn btn-primary btn-block mt-2'])}}
                     @else
                     {{From::submit('Set Promotion',['class'=>'btn btn-primary btn-block'])}}
@@ -89,24 +89,23 @@
                         <button type="button" class="btn btn-secondary btn-block " data-dismiss="modal">Close</button>
                 {{ Form::close() }}
             </div>
-            <
         </div>
-        </>
+        </div>
     </div>
     </div>
 </div>
 <script>
-    function myFunction(id,value,dateStart,dateEnd){
-        // console.log(id,value,dateStart,dateEnd);
-        // var d = new Date(dateStart) ;
-        // d=d.getFullYear()+'/'+d.getMonth()+'/'+d.getDay();
-        // // d= d.getFullYear().concat(d.getFullYear());
-        // console.log(d);
-        // document.getElementById('idP').value=id;
-        // document.getElementById('value').value=value;
-        // document.getElementById('ee').value= '';
-        // document.getElementById('dateStart').value=d;
-    }
+    // function myFunction(id,value,dateStart,dateEnd){
+    //     // console.log(id,value,dateStart,dateEnd);
+    //     // var d = new Date(dateStart) ;
+    //     // d=d.getFullYear()+'/'+d.getMonth()+'/'+d.getDay();
+    //     // // d= d.getFullYear().concat(d.getFullYear());
+    //     // console.log(d);
+    //     // document.getElementById('idP').value=id;
+    //     // document.getElementById('value').value=value;
+    //     // document.getElementById('ee').value= '';
+    //     // document.getElementById('dateStart').value=d;
+    // }
 
     $('.carousel').carousel({
   interval: 1000

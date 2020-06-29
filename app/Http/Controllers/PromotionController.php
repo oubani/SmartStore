@@ -35,7 +35,16 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
+        $promotion = new Promotion;
+        $promotion->product_id = $request->idP;
+        $promotion->value = $request->value;
+        $promotion->date_start = $request->dateStart;
+        $promotion->date_expires = $request->dateEnd;
+        $promotion->save();
+        return redirect('/allProducts')->with('success', 'Promotion added successfully');
     }
 
     /**
@@ -67,9 +76,18 @@ class PromotionController extends Controller
      * @param  \App\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Promotion $promotion)
+    public function update(Request $request, $id)
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         //
+        $promotion = Promotion::findOrFail($id);
+        $promotion->value = $request->value;
+        $promotion->date_start = $request->dateStart;
+        $promotion->date_expires = $request->dateEnd;
+        $promotion->save();
+        return redirect('/allProducts')->with('success', 'Promotion Updated');
     }
 
     /**

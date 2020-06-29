@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 use Illuminate\Support\Facades\Auth;
 
+// Route::get('/{ln}', function ($ln) {
+//     App::setlocale($ln);
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    //dd(auth()->user()->isAdmin());
     return view('welcome');
 });
 
@@ -24,16 +28,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/profile', 'UserController@profile'); // done
-Route::get('/editProfile', 'UserController@editProfile');  // done
-Route::post('/userupdate', 'UserController@updateProfile'); // done
+Route::get('/profile', 'UserController@profile')->middleware('auth'); // done
+Route::get('/editProfile', 'UserController@editProfile')->middleware('auth');  // done
+Route::post('/userupdate', 'UserController@updateProfile')->middleware('auth'); // done
 
 Route::get('/products', 'ProductController@categored'); // this route to display products to clients
 Route::get('/products/{id}', 'ProductController@categored'); // this route to display product to clients by categories
 Route::get('/product/{id}', 'ProductController@show'); // this route to display product to clients
-Route::get('/allProducts', 'ProductController@allProducts'); // this route is for adimn to see all products
-Route::get('/gproduct/{id}', 'ProductController@productDetails'); // this page display details of product it's for admin
-Route::get('/gproduct/{id}/edit', 'ProductController@edit'); // this page display details of product it's for admin
+Route::get('/allProducts', 'ProductController@allProducts')->middleware('auth'); // this route is for adimn to see all products
+Route::get('/gproduct/{id}', 'ProductController@productDetails')->middleware('auth'); // this page display details of product it's for admin
+Route::get('/gproduct/{id}/edit', 'ProductController@edit')->middleware('auth'); // this page display details of product it's for admin
 
 Route::post('/add', 'CartController@add');
 Route::post('/updatecart', 'CartController@updatecart');
@@ -41,32 +45,29 @@ Route::get('/deleteItem/{id}', 'CartController@delete');
 Route::get('/cart', 'CartController@cart');
 Route::get('/cart/destroy', 'CartController@destroy');
 
-Route::get('/addproduct', 'ProductController@create');
-Route::post('/productstore', 'ProductController@store');
-Route::post('productupdate', 'ProductController@update');
+Route::get('/addproduct', 'ProductController@create')->middleware('auth');
+Route::post('/productstore', 'ProductController@store')->middleware('auth');
+Route::post('productupdate', 'ProductController@update')->middleware('auth');
 
 Route::get('/search', 'ProductController@search');
 
-Route::post('/confirmOrder', 'OrderController@store');
-Route::get('/validate', 'OrderController@valid');
-Route::get('myorders', 'OrderController@index');
-Route::get('storeorder', 'OrderController@show');
-Route::get('/order/{id}/valide', 'OrderController@valideOrder');
-Route::get('/order/{id}/details', 'DetailController@show');
-Route::get('/orders', 'OrderController@allorders');
-Route::get('/notdelivred', 'OrderController@notdelivred');
-Route::get('/delivred', 'OrderController@delivred');
-Route::get('/orders/{id}/detail', 'OrderController@details');
+Route::post('/confirmOrder', 'OrderController@store')->middleware('auth');
+Route::get('/validate', 'OrderController@valid')->middleware('auth');
+Route::get('myorders', 'OrderController@index')->middleware('auth');
+Route::get('storeorder', 'OrderController@show')->middleware('auth');
+Route::get('/order/{id}/valide', 'OrderController@valideOrder')->middleware('auth');
+Route::get('/order/{id}/details', 'DetailController@show')->middleware('auth');
+Route::get('/orders', 'OrderController@allorders')->middleware('auth');
+Route::get('/notdelivred', 'OrderController@notdelivred')->middleware('auth');
+Route::get('/delivred', 'OrderController@delivred')->middleware('auth');
+Route::get('/orders/{id}/detail', 'OrderController@details')->middleware('auth');
 
-Route::get('/clientliste', 'ClientController@index');
-Route::get('/clientliste/admins', 'ClientController@admins');
-Route::get('/clientliste/clients', 'ClientController@clients');
-Route::get('/clients/upgrade/{id}', 'ClientController@upgrade');
-Route::get('/clients/degrade/{id}', 'ClientController@degrade');
+Route::get('/clientliste', 'ClientController@index')->middleware('auth');
+Route::get('/clientliste/admins', 'ClientController@admins')->middleware('auth');
+Route::get('/clientliste/clients', 'ClientController@clients')->middleware('auth');
+Route::get('/clients/upgrade/{id}', 'ClientController@upgrade')->middleware('auth');
+Route::get('/clients/degrade/{id}', 'ClientController@degrade')->middleware('auth');
 
-// Route::get('/categories', 'CategorieController@index'); //show categories
-// Route::post('/categories', 'CategorieController@store');
-// Route::post('/categories/update', 'CategorieController@update');
+Route::resource('categories', 'CategorieController')->middleware('auth');
 
-Route::resource('categories', 'CategorieController');
-Route::resource('promotions', 'PromotionController');
+Route::resource('promotions', 'PromotionController')->middleware('auth');

@@ -33,6 +33,9 @@ class OrderController extends Controller
      */
     public function allorders()
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $orders = DB::table('orders')->paginate(5);
         return view('orders.allorder', ['orders' => $orders]);
     }
@@ -40,6 +43,9 @@ class OrderController extends Controller
 
     public function notdelivred()
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $orders = DB::table('orders')
             ->where('type', '=', 0)
             ->paginate(1);
@@ -73,6 +79,9 @@ class OrderController extends Controller
 
     public function valideOrder($id)
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $order = Order::findorFail($id);
         $order->type = 1;
         $order->save();
@@ -108,7 +117,7 @@ class OrderController extends Controller
             ]);
         }
         Cart::destroy();
-        return redirect('/home');
+        return redirect('/home')->with('success', 'Your order accepeted we will delevred it to you soon as we can ');
     }
 
     /**
@@ -144,6 +153,9 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         //
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $order =  Order::findorFail($order);
         $order->type = 1;
         return view('orders.allorder');

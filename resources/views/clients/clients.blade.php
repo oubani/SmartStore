@@ -38,10 +38,12 @@
                         @endif
                     </td>
                     <td>{{$client->address}}</td>
+                    @if (auth()->user()->type == 2)
                     @if ($client->type == 0)
                     <td> <a href="/clients/upgrade/{{$client->id}}" class="btn btn-primary  " > {{__('messages.upgrade')}} <i class="fas fa-arrow-up"></i> </a> </td>
                     @else
                     <td> <a href="/clients/degrade/{{$client->id}}" class="btn btn-warning text-dark bold " > {{__('messages.downgrade')}} <i class="fas fa-arrow-down"></i> </a> </td>
+                    @endif
                     @endif
                 </tr>
                 @endforeach

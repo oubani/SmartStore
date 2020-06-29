@@ -15,6 +15,9 @@ class CategorieController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $categories = Categorie::all();
         return view('categories.categories', ['categories' => $categories]);
     }
@@ -36,7 +39,12 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate()
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         DB::table('categories')->insert(
             ['categorieName' => $request->categorieName]
         );
@@ -74,8 +82,6 @@ class CategorieController extends Controller
      */
     public function update(Request $request, Categorie $categorie)
     {
-        //
-        // return $request;
         $categorie = Categorie::findOrFail($request->categorieId);
         $categorie->categorieName = $request->categorieName;
         $categorie->save();
@@ -90,6 +96,9 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $categorie = Categorie::find($id);
         $categorie->delete();
         return redirect('/categories')->with('success', 'Categorie Removed');

@@ -29,7 +29,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2" style="min-height: 65vh" >
                 <ul class="list-group" >
                 <?php
                     $categorie= DB::select('select * from categories ');

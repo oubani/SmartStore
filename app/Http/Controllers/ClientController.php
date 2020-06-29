@@ -15,6 +15,9 @@ class ClientController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $clients = DB::table('users')->paginate(5);
         return  view('clients.clients', ['clients' => $clients, 'page' => 'Clients Liste']);
     }
@@ -22,12 +25,18 @@ class ClientController extends Controller
 
     public function admins()
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $clients = DB::table('users')->where('users.type', '=', 1)->paginate(5);
         return  view('clients.clients', ['clients' => $clients, 'page' => 'admins']);
     }
 
     public function clients()
     {
+        if (auth()->user()->type == 0) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $clients = DB::table('users')->where('users.type', '=', 0)->paginate(5);
         return  view('clients.clients', ['clients' => $clients, 'page' => 'clients']);
     }
@@ -35,6 +44,9 @@ class ClientController extends Controller
 
     public function upgrade($id)
     {
+        if (auth()->user()->type == 0 || auth()->user()->type == 1) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $client = User::findorFail($id);
         $client->type = 1;
         $client->save();
@@ -45,6 +57,9 @@ class ClientController extends Controller
 
     public function degrade($id)
     {
+        if (auth()->user()->type == 0 || auth()->user()->type == 1) {
+            return redirect('/')->with('error', 'you don\'t have the permetion');
+        }
         $client = User::findorFail($id);
         $client->type = 0;
         $client->save();
