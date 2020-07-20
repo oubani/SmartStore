@@ -23,7 +23,7 @@
         }
     </style>
     <div class="container">
-    <a class="navbar-brand" href="/">SmartStore</a>
+    <a class="navbar-brand" href="/"> <img src="/images/logo.jpeg" height="60px"  alt="" srcset=""> </a>
 
     {{--  right part Navbar --}}
 
