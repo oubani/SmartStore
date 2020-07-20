@@ -31,6 +31,9 @@
         <a href="/allProducts" class="link_cards card pl-5 p-5 bg-info text-dark mb-1"> {{__('messages.allProducts')}} </a>
     </div>
     <div class="col-sm-6 col-md-4 mb-3">
+        <a href="/contact" class="link_cards card pl-5 p-5 bg-danger text-dark mb-1"> Contact Us </a>
+    </div>
+    <div class="col-sm-6 col-md-4 mb-3">
         <a href="/categories" class="link_cards card pl-5 p-5 bg-info text-dark mb-1"> {{__('messages.categories')}} </a>
     </div>
     @endif

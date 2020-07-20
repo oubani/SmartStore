@@ -69,5 +69,6 @@ Route::get('/clients/upgrade/{id}', 'ClientController@upgrade')->middleware('aut
 Route::get('/clients/degrade/{id}', 'ClientController@degrade')->middleware('auth');
 
 Route::resource('categories', 'CategorieController')->middleware('auth');
+Route::resource('contact', 'ConatctUsController');
 
 Route::resource('promotions', 'PromotionController')->middleware('auth');

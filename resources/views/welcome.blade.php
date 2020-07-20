@@ -80,13 +80,12 @@
         </div>
     </div>
 </div>
+{{-- order by promotion  --}}
 <div class="container mt-3 text-center ">
     <h1 class="text-primary mb-3 ">{{__('messages.orderbyValue')}}</h1>
     <div class="row">
         <?php
-
         $table = DB::select('select *,products.id as idP from products LEFT JOIN promotions ON products.id = promotions.product_id ORDER By value DESC  limit 3 ');
-
         ?>
         @foreach ($table as $item)
             <?php  oneProducts($item);  ?>
@@ -95,15 +94,89 @@
     <br>
     <a  href="products" class=" btn btn-success">{{__('messages.seeMore')}}</a>
     <br>
-
-
 </div>
 
+{{-- produits lpus demander  --}}
+<div class="container mt-3 text-center ">
+    <h1 class="text-primary mb-3 ">The Most Requested Products</h1>
+    <div class="row">
+        <?php
+        $table = DB::select('select *,SUM(quantity) as tataolP ,products.id as idP from details JOIN products on products.id=details.product_id LEFT JOIN promotions ON products.id = promotions.product_id GROUP BY (details.product_id) ORDER By (sum(quantity)) DESC  limit 3 ');
+        ?>
+        @foreach ($table as $item)
+            <?php  oneProducts($item);  ?>
+        @endforeach
+    </div>
+    <br>
+    <a  href="products" class=" btn btn-success">{{__('messages.seeMore')}}</a>
+    <br>
+</div>
+
+{{-- nouveaux produits   --}}
+<div class="container mt-3 text-center ">
+    <h1 class="text-primary mb-3 ">New Products</h1>
+    <div class="row">
+        <?php
+        $table = DB::select('select *,products.id as idP from products LEFT JOIN promotions ON products.id = promotions.product_id GROUP BY idP DESC  limit 3 ');
+        ?>
+        @foreach ($table as $item)
+            <?php  oneProducts($item);  ?>
+        @endforeach
+    </div>
+    <br>
+    <a  href="products" class=" btn btn-success">{{__('messages.seeMore')}}</a>
+    <br>
+</div>
+
+{{-- About As   --}}
+<div class="container mt-3  ">
+    <div class="row ">
+        <div class="col-md-6">
+            <img src="/images/store.jpg" height="500px" alt="store">
+        </div>
+        <div class="col-md-6 my-auto ">
+            <h1 class="text-primary mb-3 ">About Us</h1>
+            <p class="ml-2 lead ">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere autem vitae similique magni tempore consequatur quisquam enim natus? Aut iure voluptate aspernatur quod necessitatibus laborum soluta laudantium recusandae nostrum porro?
+            </p>
+        </div>
+    </div>
+</div>
+
+{{-- Location As   --}}
+<div class="container mt-3  ">
+    <div class="row ">
+        <div class="col-md-8">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3385.613001120381!2d-4.4597339!3d31.9442627!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sma!4v1594294907662!5m2!1sen!2sma" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+        <div class="col-md-4  ">
+            <form method="POST" action="contact" class=" shadow ContactFrom" >
+                @csrf
+                <h1>Contact Us</h1>
+                <div class="form-group">
+                  <label for="Name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" name="email" id="exampleInputEmail1" required aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">message</label>
+                    <textarea  class="form-control" name="message" id="exampleFormControlTextarea1" required rows="3"></textarea>
+                  </div>
+                <button type="submit" class="btn btn-primary btn-block ">Send <i class=" ml-2 fa fa-paper-plane"></i> </button>
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{{--  Ajax start here --}}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
-
-
 <script type="text/javascript">
-
 $('#search').on('keyup',function(){
     var  value=$(this).val();
     console.log(value)

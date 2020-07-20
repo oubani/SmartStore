@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid p-4 pt-5 bg-dark text-warning mb-3 ">
     <center> <p class="lead" >{{__('messages.myOrders')}}</p></center>
-  </div>
+</div>
   <div class="container">
     <a href="/home" class="btn mb-3  btn-outline-dark "> <- {{__('messages.backToDashboard')}} </a>
     <a href="/notdelivred" class="btn mb-3 ml-3  btn-outline-primary "> {{__('messages.notDelivred')}} </a>

@@ -27,3 +27,15 @@ s {
     margin-left: 15px;
     font-size: 16px;
 }
+
+form.ContactFrom {
+    padding: 15px;
+}
+.ContactFrom input {
+    border: solid rgb(170, 162, 162) 2px;
+    width: 100%;
+}
+.ContactFrom textarea {
+    border: solid rgb(170, 162, 162) 2px;
+    width: 100%;
+}
