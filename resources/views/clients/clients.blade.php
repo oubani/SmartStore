@@ -4,7 +4,7 @@
         <center> <p class="lead" >{{$page}}</p></center>
     </div>
     <div class="container">
-        <a href="/home" class="btn mb-3 btn-outline-dark ">  {{__('messages.backToDashboard')}} </a>
+        <a href="/home" class="btn mb-3 btn-outline-dark s ">  {{__('messages.backToDashboard')}} </a>
         @if ($page!=='Clients Liste')
             <a href="/clientliste" class="btn mb-3 ml-3  btn-outline-danger "> {{__('messages.allClients')}} </a>
         @endif
@@ -38,7 +38,7 @@
                         @endif
                     </td>
                     <td>{{$client->address}}</td>
-                    @if (auth()->user()->type == 2)
+                    @if (auth()->user()->type == 1)
                     @if ($client->type == 0)
                     <td> <a href="/clients/upgrade/{{$client->id}}" class="btn btn-primary  " > {{__('messages.upgrade')}} <i class="fas fa-arrow-up"></i> </a> </td>
                     @else

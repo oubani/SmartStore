@@ -32,8 +32,10 @@
                         </td>
                       </tr>
                       @endforeach
+
                   </tbody>
             </table>
+            <div class=" center mx-auto">{{ $categories->links() }}</div>
         </div>
         <div class="col-md-4">
             <h1>{{__('messages.addCategorie')}}</h1>
@@ -60,16 +62,18 @@
           </button>
         </div>
         <div class="modal-body">
-            <form action="/categories/update" method="POST">
-                @csrf
-                <div class="form-group">
-                    <input type="hidden" value="" class="form-control" id="editcategorieId" name="categorieId" >
-                  <label for="categorieName">{{__('messages.categorieName')}}</label>
-                  <input type="text" value="" class="form-control" id="editcategorieName" name="categorieName" >
-                </div>
-                <button type="submit" class="btn-block btn btn-primary mb-3 ">{{__('messages.updateCategorie')}}</button>
-                <button type="button" class="btn btn-secondary btn-block " data-dismiss="modal">{{__('messages.close')}}</button>
-              </form>
+
+          {!! Form::open(['action' => ['CategorieController@update', $categorie->id], 'method' => 'POST']) !!}
+          {{Form::hidden('_method','PUT')}}
+            <div class="form-group">
+                {{Form::label('title', 'Categorie name')}}
+                {{Form::text('title', '', ['class' => 'form-control', 'id' => 'editcategorieName' , 'placeholder' => 'Title'])}}
+                {{Form::hidden('id','', ['class' => 'form-control','id' => 'editcategorieId' ])}}
+            </div>
+        {{Form::submit('Update', ['class'=>'btn btn-primary btn-block '])}}
+    {!! Form::close() !!}
+
+           
         </div>
       </div>
     </div>

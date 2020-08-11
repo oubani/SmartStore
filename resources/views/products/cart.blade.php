@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <title>Cart</title>
 @section('content')
-    <div class="container">
+    <div class="container " style="min-height: 58vh" >
         @if (count(Cart::content())>0)
             <table class="table mt-3">
                 <thead class="thead-dark"  >
@@ -35,8 +35,8 @@
                     </form>
                 </tbody>
             </table>
+            <a href="/products" class="btn btn-outline-primary mt-5 text-center">{{__('messages.continueShopping')}}</a>
             <a href="/validate"  class="btn mt-5 btn-success" >{{__('messages.validate')}}</a>
-            <a href="/products" class="btn btn-primary mt-5 text-center">{{__('messages.continueShopping')}}</a>
             @else
             <a href="/products" class="btn btn-primary mt-5 text-center">{{__('messages.startShopping')}}</a>
 

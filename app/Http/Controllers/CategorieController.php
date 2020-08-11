@@ -18,7 +18,8 @@ class CategorieController extends Controller
         if (auth()->user()->type == 0) {
             return redirect('/')->with('error', 'you don\'t have the permetion');
         }
-        $categories = Categorie::all();
+        $categories = DB::table('categories')->select('*')->paginate(5);
+
         return view('categories.categories', ['categories' => $categories]);
     }
 
@@ -82,8 +83,8 @@ class CategorieController extends Controller
      */
     public function update(Request $request, Categorie $categorie)
     {
-        $categorie = Categorie::findOrFail($request->categorieId);
-        $categorie->categorieName = $request->categorieName;
+        $categorie = Categorie::findOrFail($request->id);
+        $categorie->categorieName = $request->title;
         $categorie->save();
         return redirect('/categories')->with('success', 'Categorie Name Updated');
     }

@@ -28,8 +28,12 @@ class ClientController extends Controller
         if (auth()->user()->type == 0) {
             return redirect('/')->with('error', 'you don\'t have the permetion');
         }
-        $clients = DB::table('users')->where('users.type', '=', 1)->paginate(5);
-        return  view('clients.clients', ['clients' => $clients, 'page' => 'admins']);
+        $clientss =
+            DB::table('users')
+            ->select('*')
+            ->where('type', '=', 1)
+            ->paginate(5);
+        return  view('clients.clients', ['clients' => $clientss, 'page' => 'admins']);
     }
 
     public function clients()

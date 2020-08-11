@@ -48,7 +48,7 @@ class OrderController extends Controller
         }
         $orders = DB::table('orders')
             ->where('type', '=', 0)
-            ->paginate(1);
+            ->paginate(5);
         return view('orders.notdelivred', ['orders' => $orders]);
     }
 
@@ -68,7 +68,7 @@ class OrderController extends Controller
     {
         $orders = DB::table('orders')
             ->where('type', '=', 1)
-            ->paginate(1);
+            ->paginate(5);
         return view('orders.delivred', ['orders' => $orders]);
     }
 

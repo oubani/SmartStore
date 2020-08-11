@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-2">
+<div class="container mt-2 " style="min-height: 56vh" >
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

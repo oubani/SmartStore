@@ -10,8 +10,8 @@
             $oldprice= '<s>'.$item->prix.' Dh  </s>';
         }
         $product = '
-        <div class="col-md-4">
-            <div class="card shadow rounded mb-2 " style="width: 17rem;">
+        <div class="col-md-4 my-2 ">
+            <div class="card  rounded mb-2 " style="width: 17rem;">
                 <img class="card-img-top" height="269px" width=100% src="/images/'.$item->cover.'" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">'.$item->name.'  </h5>'. $promo .'

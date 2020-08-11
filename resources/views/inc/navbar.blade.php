@@ -34,7 +34,7 @@
             <div class="badge text-white counter "  >{{Cart::count()}}</div>
         @endif </div></a> </li>
         @if (Auth::guest())
-            <li class="nav-item"><a class="nav-link btn btn-success rounded text-white " href="{{route('login')}}" > {{__('messages.connect')}} </a> </li>
+            <li class="nav-item"><a class="nav-link btn btn-outline-success rounded  " href="{{route('login')}}" > {{__('messages.connect')}} </a> </li>
         @else
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
