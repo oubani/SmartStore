@@ -1,3 +1,15 @@
+<style>
+    .navbar-light .navbar-nav .nav-link {
+        color: black;
+    }
+    .counter{
+        z-index: 1;
+        float: right;
+        top: 10px;
+        background: #3DC4FE;
+        overflow: auto;
+    }
+</style>
 <div class="pt-1 pb-1" style="background: #cbcbcc" >
 <div class="container d-flex justify-content-between">
     <div style="color: black" >
@@ -10,18 +22,6 @@
 </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <style>
-        .navbar-light .navbar-nav .nav-link {
-            color: black;
-        }
-        .counter{
-            z-index: 1;
-            float: right;
-            top: 10px;
-            background: #3DC4FE;
-            overflow: auto;
-        }
-    </style>
     <div class="container">
     <a class="navbar-brand" href="/"> <img src="/images/logo.jpeg" height="60px"  alt="" srcset=""> </a>
 

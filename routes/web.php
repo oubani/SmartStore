@@ -19,7 +19,10 @@ use Illuminate\Support\Facades\Auth;
 //     return view('welcome');
 // });
 
+use Illuminate\Support\Facades\DB;
+
 Route::get('/', function () {
+    DB::table('promotions')->where('date_expires', '<', date('Y-m-d'))->delete();
     return view('welcome');
 });
 
