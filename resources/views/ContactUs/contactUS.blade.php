@@ -20,8 +20,12 @@
                         <td>{{$contact->email}}</td>
                         <td>{{$contact->message}}</td>
                         <td>{{$contact->type?'visible':'hidden'}}</td>
-                        <td><div class="btn btn-warning">edit</div></td>
-                        <td><div class="btn btn-danger">delete</div></td>
+                        <td>
+                            {!!Form::open(['action' => ['ConatctUsController@destroy', $contact->id], 'method' => 'POST'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                            {!!Form::close()!!}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

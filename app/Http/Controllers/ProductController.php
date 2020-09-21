@@ -97,7 +97,7 @@ class ProductController extends Controller
                 'date_expires' => $request['date_end'],
             ]);
         }
-        return  view('products.addproducts');
+        return  redirect('/addproduct')->with('succes', 'the Product added successfully');
     }
 
 

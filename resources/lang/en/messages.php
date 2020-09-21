@@ -15,7 +15,7 @@ return [
     'allProducts' => 'All Products',
     'categories' => 'Categories',
     // Welcome View
-    'orderbyValue' => 'Order by Promotion',
+    'orderbyValue' => 'Ordered by Promotion',
     'details' => 'See Details',
     'seeMore' => 'See More Products',
     'search' => 'Search',

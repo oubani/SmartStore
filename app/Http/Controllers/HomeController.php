@@ -23,9 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-
-        DB::delete("delete promotions where date_expires <= 'date('Y-m-d') 00:00:00' ");
         return view('home');
     }
 }

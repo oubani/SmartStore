@@ -39,7 +39,6 @@
     </div>
 
     <div class="col-md-5">
-
         <h1> {{$product[0]->name}} </h1>
         <p class="my-2" > {{__('messages.description')}} : <b> {{$product[0]->description}}</b> </p>
         <p class="my-2" > {{__('messages.price')}} : <b> {{$product[0]->prix}} DH </b> </p>
@@ -73,8 +72,9 @@
                 @else
                 {{ Form::open(['action'=>'PromotionController@store','method'=>'POST'])}}
                 @endif
-                    <div class="form-group">
-                        {{ Form::label('value', 'Value ') }}
+                <div class="form-group">
+                    {{ Form::label('value', 'Value ') }}
+                    {{ Form::hidden('idP',$product[0]->pid,['id'=>'idP'])}}
                         {{ Form::number('value',$product[0]->value,['id'=>'value','class'=>'form-control','placeholder'=>'Set value for item','required'=>'required'])}}
                         {{ Form::label('dateStart', 'Promotion Starts on ') }}
                         {{ Form::date('dateStart',date_format(date_create($product[0]->date_start),"Y-m-d"),['id'=>'dateStart','class'=>'form-control','min'=>"YYYY-MM-DD",'placeholder'=>'Set value for item'])}}

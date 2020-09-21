@@ -38,6 +38,7 @@ class PromotionController extends Controller
         if (auth()->user()->type == 0) {
             return redirect('/')->with('error', 'you don\'t have the permetion');
         }
+        // return $request;
         $promotion = new Promotion;
         $promotion->product_id = $request->idP;
         $promotion->value = $request->value;

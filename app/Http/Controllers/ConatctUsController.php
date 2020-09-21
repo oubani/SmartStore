@@ -95,8 +95,15 @@ class ConatctUsController extends Controller
      * @param  \App\ConatctUs  $conatctUs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ConatctUs $conatctUs)
+    public function destroy($id)
     {
         //
+        // return $id;
+        $newContact = ConatctUs::findorFail($id);
+        if (!$newContact) {
+            return redirect('/contact')->with('error', 'No Message Found');
+        }
+        $newContact->delete();
+        return redirect('/contact')->with('success', 'Message deleted');
     }
 }
