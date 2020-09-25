@@ -12,7 +12,7 @@
         $product = '
         <div class="col-md-4 my-2 ">
             <div class="card  rounded mb-2 " style="width: 17rem;">
-                <img class="card-img-top" height="269px" width=100% src="/images/'.$item->cover.'" alt="Card image cap">
+                <img class="card-img-top" maxheight="269px" width=100% src="/images/'.$item->cover.'" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">'.$item->name.'  </h5>'. $promo .'
                 <p class="card-text"> '. $oldprice .' <span class="lastPrice" > '.$price .' Dh</span>    </p>
